@@ -1,0 +1,79 @@
+# See https://github.com/Tecnativa/doodba#optodoocustomsrcreposyaml
+./odoo:
+  defaults:
+    # Shallow repositories ($DEPTH_DEFAULT=1) are faster & thinner
+    # You may need a bigger depth when merging PRs (use $DEPTH_MERGE
+    # for a sane value of 100 commits)
+    depth: $DEPTH_DEFAULT
+  remotes:
+    ocb: https://github.com/OCA/OCB.git
+    odoo: https://github.com/odoo/odoo.git
+    openupgrade: https://github.com/OCA/OpenUpgrade.git
+  target: ocb $ODOO_VERSION
+  merges:
+    - ocb $ODOO_VERSION
+    # Example of a merge of the PR with the number <PR>
+    # - oca refs/pull/<PR>/head
+
+oca/calendar:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/OCA/calendar.git
+    ows: https://github.com/ows-cloud/calendar.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+    - ows 16.0-mig-resource_booking
+
+oca/product-attribute:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/OCA/product-attribute.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+    - origin refs/pull/1289/head # 16.0 [MIG] product_list_pricelist_price
+    - origin refs/pull/1347/head # [16.0][MIG] product_attribute_value_menu: Migration to 16.0
+
+oca/sale-workflow:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/OCA/sale-workflow.git
+    ows: https://github.com/ows-cloud/sale-workflow.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+    - ows 16.0-mig-sale_resource_booking
+
+oca/web:
+  defaults:
+    depth: 200 # $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/OCA/web.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+    - origin refs/pull/2549/head # [16.0] [MIG] web_calendar_slot_duration
+    - origin refs/pull/2328/head # [16.0] [MIG] web_ir_actions_act_multi: Migration to 16.0
+
+ows/dev:
+  defaults:
+    depth: 1 # $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/ows-cloud/dev.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+# LAST
+ows/temp:
+  defaults:
+    depth: 1 # $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/ows-cloud/temp.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
