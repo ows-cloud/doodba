@@ -1,6 +1,5 @@
-# repo = "../oca/sale-workflow"
-# module = "sale_resource_booking"
+repo = "../oca/web"
 
-repo = "../oca/e-commerce"
-module = "website_sale_resource_booking"
+module = "web_calendar_slot_duration"
+
 user_org = "ows-cloud"

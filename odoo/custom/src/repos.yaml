@@ -1,64 +1,3 @@
-# See https://github.com/Tecnativa/doodba#optodoocustomsrcreposyaml
-./odoo:
-  defaults:
-    # Shallow repositories ($DEPTH_DEFAULT=1) are faster & thinner
-    # You may need a bigger depth when merging PRs (use $DEPTH_MERGE
-    # for a sane value of 100 commits)
-    depth: $DEPTH_DEFAULT
-  remotes:
-    ocb: https://github.com/OCA/OCB.git
-    odoo: https://github.com/odoo/odoo.git
-    openupgrade: https://github.com/OCA/OpenUpgrade.git
-  target: ocb $ODOO_VERSION
-  merges:
-    - ocb $ODOO_VERSION
-    # Example of a merge of the PR with the number <PR>
-    # - oca refs/pull/<PR>/head
-
-oca/calendar:
-  defaults:
-    depth: $DEPTH_MERGE
-  remotes:
-    origin: https://github.com/OCA/calendar.git
-    ows: https://github.com/ows-cloud/calendar.git
-  target: origin $ODOO_VERSION
-  merges:
-    - origin $ODOO_VERSION
-    - ows 16.0-mig-resource_booking
-
-oca/product-attribute:
-  defaults:
-    depth: $DEPTH_MERGE
-  remotes:
-    origin: https://github.com/OCA/product-attribute.git
-  target: origin $ODOO_VERSION
-  merges:
-    - origin $ODOO_VERSION
-    - origin refs/pull/1289/head # 16.0 [MIG] product_list_pricelist_price
-    - origin refs/pull/1347/head # [16.0][MIG] product_attribute_value_menu: Migration to 16.0
-
-oca/sale-workflow:
-  defaults:
-    depth: $DEPTH_MERGE
-  remotes:
-    origin: https://github.com/OCA/sale-workflow.git
-    ows: https://github.com/ows-cloud/sale-workflow.git
-  target: origin $ODOO_VERSION
-  merges:
-    - origin $ODOO_VERSION
-    - ows 16.0-mig-sale_resource_booking
-
-oca/web:
-  defaults:
-    depth: 200 # $DEPTH_DEFAULT
-  remotes:
-    origin: https://github.com/OCA/web.git
-  target: origin $ODOO_VERSION
-  merges:
-    - origin $ODOO_VERSION
-    - origin refs/pull/2549/head # [16.0] [MIG] web_calendar_slot_duration
-    - origin refs/pull/2328/head # [16.0] [MIG] web_ir_actions_act_multi: Migration to 16.0
-
 ows/dev:
   defaults:
     depth: 1 # $DEPTH_MERGE
@@ -68,12 +7,151 @@ ows/dev:
   merges:
     - origin $ODOO_VERSION
 
-# LAST
-ows/temp:
+# See https://github.com/Tecnativa/doodba#optodoocustomsrcreposyaml
+./odoo:
   defaults:
-    depth: 1 # $DEPTH_MERGE
+    # Shallow repositories ($DEPTH_DEFAULT=1) are faster & thinner
+    # You may need a bigger depth when merging PRs (use $DEPTH_MERGE
+    # for a sane value of 100 commits)
+    depth: $DEPTH_DEFAULT
   remotes:
-    origin: https://github.com/ows-cloud/temp.git
+    ocb: https://github.com/oca/ocb.git
+    odoo: https://github.com/odoo/odoo.git
+    openupgrade: https://github.com/oca/openupgrade.git
+  target: ocb $ODOO_VERSION
+  merges:
+    - odoo $ODOO_VERSION
+    # Example of a merge of the PR with the number <PR>
+    # - oca refs/pull/<PR>/head
+
+oca/bank-statement-import:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/oca/bank-statement-import.git
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
+    - origin refs/pull/554/head  # [WIP][16.0][MIG] account_statement_import_online_ponto: Migration to 16.0
+
+oca/calendar:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/oca/calendar.git
+    ows: https://github.com/ows-cloud/calendar.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+    - origin refs/pull/101/head  # [16.0][MIG] resource_booking: Migration to 16.0
+    - origin refs/pull/102/head  # [16.0][IMP] resource_booking: partner button
+    # - ows 16.0-mig-resource_booking
+    # resource_booking_timeline
+    # - ows 16.0-fix-unfitting-resource_booking
+
+oca/connector:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/oca/calendar.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+oca/connector-telephony:
+  defaults:
+    depth: 200 # $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/oca/connector-telephony.git
+    ows: https://github.com/ows-cloud/connector-telephony.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+    - origin refs/pull/300/head # [16.0][MIG] base_phone: Migration to 16.0
+    # - ows 16.0-mig-asterisk_click2dial
+
+oca/e-commerce:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/oca/e-commerce.git
+    ows: https://github.com/ows-cloud/e-commerce.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+    - ows 16.0-mig-website_sale_resource_booking
+
+oca/product-attribute:
+  defaults:
+    depth: 200 # $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/oca/product-attribute.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+    - origin refs/pull/1289/head # 16.0 [MIG] product_list_pricelist_price
+    - origin refs/pull/1347/head # [16.0][MIG] product_attribute_value_menu: Migration to 16.0
+    - origin refs/pull/1408/head # [16.0][ADD] partner_product_price
+
+oca/product-pack:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/oca/product-pack.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+oca/project:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/oca/project.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+oca/sale-workflow:
+  defaults:
+    depth: $DEPTH_MERGE
+  remotes:
+    origin: https://github.com/oca/sale-workflow.git
+    ows: https://github.com/ows-cloud/sale-workflow.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+    - origin refs/pull/2663/head # [16.0][IMP] sale_resource_booking: Buttons (product variant -> booking -> sale order)
+    # - origin refs/pull/2664/head # [16.0][ADD] sale_resource_booking_product_variant
+    - ows dev-16.0-add-sale_resource_booking_product_variant
+    # - origin refs/pull/2665/head # [16.0][ADD] sale_resource_booking_timeline
+    - ows dev-16.0-add-sale_resource_booking_timeline
+
+oca/server-ux:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/oca/server-ux.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+oca/web:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/oca/web.git
+  target: origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+    - origin refs/pull/2601/head # [16.0][MIG] web_calendar_slot_duration: Migration to 16.0
+    # - origin refs/pull/2549/head # [16.0] [MIG] web_calendar_slot_duration
+
+# LAST
+# ows/temp:
+#   defaults:
+#     depth: 1 # $DEPTH_MERGE
+#   remotes:
+#     origin: https://github.com/ows-cloud/temp.git
+#   target: origin $ODOO_VERSION
+#   merges:
+#     - origin $ODOO_VERSION

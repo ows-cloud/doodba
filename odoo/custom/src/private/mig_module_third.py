@@ -1,6 +1,6 @@
 import subprocess
 
-from mig_module_common import repo, module
+from mig_module_common import module
 
 
 commands = """
@@ -11,3 +11,5 @@ commands = """
 
 subprocess.run(commands, check=True, capture_output=True, shell=True)
 # subprocess.run(commands, check=False, capture_output=False, shell=True)
+
+# WHY DOES IT NOT WORK???
