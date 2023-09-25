@@ -44,7 +44,7 @@ oca/calendar:
   merges:
     - origin $ODOO_VERSION
     - origin refs/pull/101/head  # [16.0][MIG] resource_booking: Migration to 16.0
-    - origin refs/pull/102/head  # [16.0][IMP] resource_booking: partner button
+    # - origin refs/pull/102/head  # [16.0][IMP] resource_booking: partner button
     # - ows 16.0-mig-resource_booking
     # resource_booking_timeline
     # - ows 16.0-fix-unfitting-resource_booking
@@ -53,7 +53,7 @@ oca/connector:
   defaults:
     depth: $DEPTH_DEFAULT
   remotes:
-    origin: https://github.com/oca/calendar.git
+    origin: https://github.com/oca/connector.git
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
@@ -83,15 +83,17 @@ oca/e-commerce:
 
 oca/product-attribute:
   defaults:
-    depth: 200 # $DEPTH_MERGE
+    depth: 100 # $DEPTH_MERGE
   remotes:
     origin: https://github.com/oca/product-attribute.git
+    ows: https://github.com/ows-cloud/product-attribute.git
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
     - origin refs/pull/1289/head # 16.0 [MIG] product_list_pricelist_price
     - origin refs/pull/1347/head # [16.0][MIG] product_attribute_value_menu: Migration to 16.0
     - origin refs/pull/1408/head # [16.0][ADD] partner_product_price
+    # - ows dev-16.0-add-partner_product_price
 
 oca/product-pack:
   defaults:
@@ -101,6 +103,7 @@ oca/product-pack:
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
+    - origin refs/pull/147/head  # [16.0][FIX] product_pack: Ignore pack_component_price for non_detailed pack
 
 oca/project:
   defaults:
@@ -120,11 +123,12 @@ oca/sale-workflow:
   target: origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
-    - origin refs/pull/2663/head # [16.0][IMP] sale_resource_booking: Buttons (product variant -> booking -> sale order)
+    - origin refs/pull/2661/head  # [16.0][MIG] sale_resource_booking: Migration to 16.0
+    # - origin refs/pull/2663/head # [16.0][IMP] sale_resource_booking: Buttons (product variant -> booking -> sale order)
     # - origin refs/pull/2664/head # [16.0][ADD] sale_resource_booking_product_variant
-    - ows dev-16.0-add-sale_resource_booking_product_variant
+    # - ows dev-16.0-add-sale_resource_booking_product_variant
     # - origin refs/pull/2665/head # [16.0][ADD] sale_resource_booking_timeline
-    - ows dev-16.0-add-sale_resource_booking_timeline
+    # - ows dev-16.0-add-sale_resource_booking_timeline
 
 oca/server-ux:
   defaults:
